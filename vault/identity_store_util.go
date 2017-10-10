@@ -229,7 +229,7 @@ func (i *IdentityStore) LockForEntityID(entityID string) *locksutil.LockEntry {
 
 // upsertEntityInTxn either creates or updates an existing entity. The
 // operations will be updated in both MemDB and storage. If 'persist' is set to
-// false, then storage will not be updated. When a alias is transferred from
+// false, then storage will not be updated. When an alias is transferred from
 // one entity to another, both the source and destination entities should get
 // updated, in which case, callers should send in both entity and
 // previousEntity.
@@ -318,7 +318,7 @@ func (i *IdentityStore) upsertEntityInTxn(txn *memdb.Txn, entity *identity.Entit
 
 // upsertEntity either creates or updates an existing entity. The operations
 // will be updated in both MemDB and storage. If 'persist' is set to false,
-// then storage will not be updated. When a alias is transferred from one
+// then storage will not be updated. When an alias is transferred from one
 // entity to another, both the source and destination entities should get
 // updated, in which case, callers should send in both entity and
 // previousEntity.

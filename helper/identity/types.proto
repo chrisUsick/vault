@@ -42,6 +42,8 @@ message Group {
 	// the groups belonging to a particular bucket during invalidation of the
 	// storage key.
 	string bucket_key_hash = 10;
+
+	GroupAlias alias = 11;
 }
 
 
@@ -130,8 +132,8 @@ message Alias {
 	map<string, string> metadata = 6;
 
 	// Name is the identifier of this alias in its authentication source.
-	// This does not uniquely identify a alias in Vault. This in conjunction
-	// with MountAccessor form to be the factors that represent a alias in a
+	// This does not uniquely identify an alias in Vault. This in conjunction
+	// with MountAccessor form to be the factors that represent an alias in a
 	// unique way. Aliases will be indexed based on this combined uniqueness
 	// factor.
 	string name = 7;
@@ -148,4 +150,14 @@ message Alias {
 	// which this alias is transfered over to the entity to which it
 	// currently belongs to.
 	repeated string merged_from_entity_ids = 10;
+}
+
+message GroupAlias {
+	string id = 1;
+	string name = 2;
+	string group_id = 3;
+	string mount_type = 4;
+	string mount_accessor = 5;
+	google.protobuf.Timestamp creation_time = 6;
+	google.protobuf.Timestamp last_update_time = 7;
 }

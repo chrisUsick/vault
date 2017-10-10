@@ -27,7 +27,7 @@ func TestIdentityStore_ListAlias(t *testing.T) {
 	}
 	entityID := resp.Data["id"].(string)
 
-	// Create a alias
+	// Create an alias
 	aliasData := map[string]interface{}{
 		"name":           "testaliasname",
 		"mount_accessor": githubAccessor,
@@ -82,7 +82,7 @@ func TestIdentityStore_AliasSameAliasNames(t *testing.T) {
 		Data:      aliasData,
 	}
 
-	// Register a alias
+	// Register an alias
 	resp, err = is.HandleRequest(aliasReq)
 	if err != nil || (resp != nil && resp.IsError()) {
 		t.Fatalf("err:%v resp:%#v", err, resp)
@@ -333,7 +333,7 @@ func TestIdentityStore_AliasUpdate(t *testing.T) {
 		Data:      aliasData,
 	}
 
-	// This will create a alias and a corresponding entity
+	// This will create an alias and a corresponding entity
 	resp, err = is.HandleRequest(aliasReq)
 	if err != nil || (resp != nil && resp.IsError()) {
 		t.Fatalf("err:%v resp:%#v", err, resp)

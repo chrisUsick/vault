@@ -15,6 +15,7 @@ func identityStoreSchema() *memdb.DBSchema {
 		entityTableSchema,
 		aliasesTableSchema,
 		groupTableSchema,
+		groupAliasTableSchema,
 	}
 
 	for _, schemaFunc := range schemas {
@@ -26,6 +27,49 @@ func identityStoreSchema() *memdb.DBSchema {
 	}
 
 	return iStoreSchema
+}
+
+func groupAliasTableSchema() *memdb.TableSchema {
+	return &memdb.TableSchema{
+		Name: "group_aliases",
+		Indexes: map[string]*memdb.IndexSchema{
+			"id": &memdb.IndexSchema{
+				Name:   "id",
+				Unique: true,
+				Indexer: &memdb.StringFieldIndex{
+					Field: "ID",
+				},
+			},
+			"group_id": &memdb.IndexSchema{
+				Name:   "group_id",
+				Unique: false,
+				Indexer: &memdb.StringFieldIndex{
+					Field: "GroupID",
+				},
+			},
+			"mount_type": &memdb.IndexSchema{
+				Name:   "mount_type",
+				Unique: false,
+				Indexer: &memdb.StringFieldIndex{
+					Field: "MountType",
+				},
+			},
+			"factors": &memdb.IndexSchema{
+				Name:   "factors",
+				Unique: true,
+				Indexer: &memdb.CompoundIndex{
+					Indexes: []memdb.Indexer{
+						&memdb.StringFieldIndex{
+							Field: "MountAccessor",
+						},
+						&memdb.StringFieldIndex{
+							Field: "Name",
+						},
+					},
+				},
+			},
+		},
+	}
 }
 
 func aliasesTableSchema() *memdb.TableSchema {

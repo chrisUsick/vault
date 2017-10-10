@@ -267,7 +267,7 @@ func (i *IdentityStore) EntityByAliasFactors(mountAccessor, aliasName string, cl
 }
 
 // CreateEntity creates a new entity. This is used by core to
-// associate each login attempt by a alias to a unified entity in Vault.
+// associate each login attempt by an alias to a unified entity in Vault.
 func (i *IdentityStore) CreateEntity(alias *logical.Alias) (*identity.Entity, error) {
 	var entity *identity.Entity
 	var err error
